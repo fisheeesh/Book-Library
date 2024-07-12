@@ -28,6 +28,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         sqlitedatabase?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
         onCreate(sqlitedatabase)
     }
+
     fun addBook(title : String, author : String, pages : Int) : Long {
         db = writableDatabase
 
@@ -42,6 +43,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
 
         return db.insert(TABLE_NAME, null, values)
     }
+
     fun getAllBooks() : Cursor{
         db = readableDatabase
         //sql query for retrieving data
@@ -54,6 +56,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         }
         return cursor!!
     }
+
     fun updateBook(id : String, title : String, author : String, pages : Int) : Int{
         db = writableDatabase
 
@@ -66,10 +69,12 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
 
         return db.update(TABLE_NAME, content, "$COLUMN_ID=?", arrayOf<String>(id))
     }
+
     fun deleteBook(id : String){
         db = writableDatabase
         db.delete(TABLE_NAME, "$COLUMN_ID=?", arrayOf(id))
     }
+
     fun deleteAllBooks(){
         db = writableDatabase
         db.execSQL("DELETE FROM $TABLE_NAME;")

@@ -39,6 +39,5 @@ class AddActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 }

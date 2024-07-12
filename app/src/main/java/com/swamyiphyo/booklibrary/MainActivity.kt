@@ -44,24 +44,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    private fun storeDataInArrays(){
-        val cursor = db.getAllBooks()
-
-        if(cursor.count == 0){
-            //cursor is empty that means there is no data in our database table
-            mainBinding.textViewNoData.visibility = View.VISIBLE
-            mainBinding.imageViewEmpty.visibility = View.VISIBLE
-        }
-        else{
-            //we have data now we're gonna get data by moving cursor to the last and add to the respective arraylist
-            while (cursor.moveToNext()){
-                bookId.add(cursor.getString(0))
-                bookTitle.add(cursor.getString(1))
-                bookAuthor.add(cursor.getString(2))
-                bookPages.add(cursor.getString(3))
-            }
-        }
-    }
 
     @Deprecated("This method has been deprecated in favor of using the Activity Result API\n      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt\n      contracts for common intents available in\n      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for\n      testing, and allow receiving results in separate, testable classes independent from your\n      activity. Use\n      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)}\n      with the appropriate {@link ActivityResultContract} and handling the result in the\n      {@link ActivityResultCallback#onActivityResult(Object) callback}.")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -82,6 +64,26 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    private fun storeDataInArrays(){
+        val cursor = db.getAllBooks()
+
+        if(cursor.count == 0){
+            //cursor is empty that means there is no data in our database table
+            mainBinding.textViewNoData.visibility = View.VISIBLE
+            mainBinding.imageViewEmpty.visibility = View.VISIBLE
+        }
+        else{
+            //we have data now we're gonna get data by moving cursor to the last and add to the respective arraylist
+            while (cursor.moveToNext()){
+                bookId.add(cursor.getString(0))
+                bookTitle.add(cursor.getString(1))
+                bookAuthor.add(cursor.getString(2))
+                bookPages.add(cursor.getString(3))
+            }
+        }
+    }
+
     private fun confirmDialog(){
         val alert = AlertDialog.Builder(this)
         alert.apply {

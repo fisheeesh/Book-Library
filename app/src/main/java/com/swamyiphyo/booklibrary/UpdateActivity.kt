@@ -50,10 +50,12 @@ class UpdateActivity : AppCompatActivity() {
                 }
             }
         }
+
         updateBinding.deleteBtn.setOnClickListener(){
             confirmDialog()
         }
     }
+
     private fun getAndSetIntentData(){
         if(intent.hasExtra("id") || intent.hasExtra("title") || intent.hasExtra("author") || intent.hasExtra("pages")){
             //getting data from intent
@@ -71,6 +73,7 @@ class UpdateActivity : AppCompatActivity() {
             Toast.makeText(this, "No Data.", Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun confirmDialog(){
         val alert = AlertDialog.Builder(this)
         alert.apply {
