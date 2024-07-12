@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -43,14 +44,14 @@ class UpdateActivity : AppCompatActivity() {
                     Toast.makeText(this, "Failed to update book", Toast.LENGTH_SHORT).show()
                 }
                 else{
-                    Toast.makeText(this, "Book updated successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Book Updated Successfully", Toast.LENGTH_SHORT).show()
                     startActivityForResult(Intent(this, MainActivity::class.java), 1)
                     finish()
                 }
             }
         }
         updateBinding.deleteBtn.setOnClickListener(){
-
+            confirmDialog()
         }
     }
     private fun getAndSetIntentData(){
@@ -70,4 +71,19 @@ class UpdateActivity : AppCompatActivity() {
             Toast.makeText(this, "No Data.", Toast.LENGTH_SHORT).show()
         }
     }
+    private fun confirmDialog(){
+        val alert = AlertDialog.Builder(this)
+        alert.apply {
+            setTitle("Delete $title?")
+            setMessage("Are you sure you want to delete $title?")
+            setPositiveButton("Yes"){_, _ ->
+                db.deleteBook(id)
+                Toast.makeText(this@UpdateActivity, "Book Deleted!", Toast.LENGTH_SHORT).show()
+                startActivityForResult(Intent(this@UpdateActivity, MainActivity::class.java), 1)
+            }
+            setNegativeButton("No"){_, _ -> }
+        }
+        alert.create().show()
+    }
+
 }

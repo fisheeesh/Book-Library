@@ -32,7 +32,7 @@ class AddActivity : AppCompatActivity() {
                     Toast.makeText(this, "Failed to add book", Toast.LENGTH_SHORT).show()
                 }
                 else{
-                    Toast.makeText(this, "Book added successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Book Added Successfully", Toast.LENGTH_SHORT).show()
                     addBinding.editTextBookTitle.text.clear()
                     addBinding.editTextBookAuthor.text.clear()
                     addBinding.editTextBookPages.text.clear()

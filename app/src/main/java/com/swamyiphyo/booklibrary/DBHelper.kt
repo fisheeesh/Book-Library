@@ -66,4 +66,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
 
         return db.update(TABLE_NAME, content, "$COLUMN_ID=?", arrayOf<String>(id))
     }
+    fun deleteBook(id : String){
+        db = writableDatabase
+        db.delete(TABLE_NAME, "$COLUMN_ID=?", arrayOf(id))
+    }
 }
