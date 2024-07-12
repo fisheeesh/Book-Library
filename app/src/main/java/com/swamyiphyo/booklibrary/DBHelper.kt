@@ -70,4 +70,8 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         db = writableDatabase
         db.delete(TABLE_NAME, "$COLUMN_ID=?", arrayOf(id))
     }
+    fun deleteAllBooks(){
+        db = writableDatabase
+        db.execSQL("DELETE FROM $TABLE_NAME;")
+    }
 }

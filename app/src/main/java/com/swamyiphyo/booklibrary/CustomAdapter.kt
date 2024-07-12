@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,7 @@ class CustomAdapter(
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.id.text = bookId[position]
         holder.title.text = bookTitle[position]
+        holder.title.isSelected = true
         holder.author.text = bookAuthor[position]
         holder.pages.text = bookPages[position]
 
@@ -37,6 +39,8 @@ class CustomAdapter(
             }
             context.startActivity(intent)
         }
+        val animation = AnimationUtils.loadAnimation(context, R.anim.translate_anim)
+        holder.bookHolder.animation = animation
     }
     inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val id : TextView = itemView.findViewById(R.id.textView_book_id)
