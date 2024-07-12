@@ -54,4 +54,16 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         }
         return cursor!!
     }
+    fun updateBook(id : String, title : String, author : String, pages : Int) : Int{
+        db = writableDatabase
+
+        val content = ContentValues()
+        content.apply {
+            put(COLUMN_TITLE, title)
+            put(COLUMN_AUTHOR, author)
+            put(COLUMN_PAGES, pages)
+        }
+
+        return db.update(TABLE_NAME, content, "$COLUMN_ID=?", arrayOf<String>(id))
+    }
 }

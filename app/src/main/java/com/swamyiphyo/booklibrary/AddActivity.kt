@@ -3,12 +3,8 @@ package com.swamyiphyo.booklibrary
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.swamyiphyo.booklibrary.databinding.ActivityAddBinding
-import com.swamyiphyo.booklibrary.databinding.ActivityMainBinding
 
 class AddActivity : AppCompatActivity() {
     private lateinit var addBinding: ActivityAddBinding

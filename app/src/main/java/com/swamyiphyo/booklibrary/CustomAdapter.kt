@@ -1,10 +1,12 @@
 package com.swamyiphyo.booklibrary
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class CustomAdapter(
@@ -24,11 +26,23 @@ class CustomAdapter(
         holder.title.text = bookTitle[position]
         holder.author.text = bookAuthor[position]
         holder.pages.text = bookPages[position]
+
+        holder.bookHolder.setOnClickListener(){
+            val intent = Intent(context, UpdateActivity::class.java)
+            intent.apply {
+                putExtra("id", bookId[position])
+                putExtra("title", bookTitle[position])
+                putExtra("author", bookAuthor[position])
+                putExtra("pages", bookPages[position])
+            }
+            context.startActivity(intent)
+        }
     }
     inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val id : TextView = itemView.findViewById(R.id.textView_book_id)
         val title : TextView = itemView.findViewById(R.id.textView_book_title)
         val author : TextView = itemView.findViewById(R.id.textView_book_author)
         val pages : TextView = itemView.findViewById(R.id.textView_book_pages)
+        val bookHolder : CardView = itemView.findViewById(R.id.book_holder)
     }
 }
